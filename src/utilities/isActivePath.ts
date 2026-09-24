@@ -1,8 +1,9 @@
-export function isActivePath(pathname: string, url: string | null): boolean {
-  if (!url?.startsWith("/")) return false
+export function isActivePath(pathname: string, url: string): boolean {
+  const [path = ""] = url.split(/[?#]/)
+  if (!path.startsWith("/")) return false
 
-  const normalizedUrl = url === "/" ? url : url.replace(/\/+$/, "")
-  if (normalizedUrl === "/") return pathname === "/"
+  const normalizedPath = path === "/" ? path : path.replace(/\/+$/, "")
+  if (normalizedPath === "/") return pathname === "/"
 
-  return pathname === normalizedUrl || pathname.startsWith(`${normalizedUrl}/`)
+  return pathname === normalizedPath || pathname.startsWith(`${normalizedPath}/`)
 }

@@ -27,8 +27,14 @@ describe("isActivePath", () => {
     expect(isActivePath("/topics", "/topics/")).toBe(true)
   })
 
-  it("ignores external and missing URLs", () => {
+  it("ignores the query string and hash", () => {
+    expect(isActivePath("/topics", "/topics?sort=new")).toBe(true)
+    expect(isActivePath("/about", "/about#team")).toBe(true)
+    expect(isActivePath("/", "/?ref=nav")).toBe(true)
+  })
+
+  it("ignores external and relative URLs", () => {
     expect(isActivePath("/topics", "https://example.com/topics")).toBe(false)
-    expect(isActivePath("/topics", null)).toBe(false)
+    expect(isActivePath("/topics", "#topics")).toBe(false)
   })
 })

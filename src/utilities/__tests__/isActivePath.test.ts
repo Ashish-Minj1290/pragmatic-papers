@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { isActivePath } from "../isActivePath"
+import { isActivePath } from "@/utilities/isActivePath"
 
 describe("isActivePath", () => {
   it("matches the exact route", () => {
@@ -12,6 +12,10 @@ describe("isActivePath", () => {
 
   it("does not mark sibling routes active", () => {
     expect(isActivePath("/authors", "/topics")).toBe(false)
+  })
+
+  it("matches whole segments, not string prefixes", () => {
+    expect(isActivePath("/articles-archive", "/articles")).toBe(false)
   })
 
   it("treats the home route as exact-only", () => {

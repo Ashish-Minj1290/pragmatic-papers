@@ -2,7 +2,7 @@
 
 import { NavigationMenuLink } from "@/components/ui/navigation-menu"
 import { usePathname } from "next/navigation"
-import { isActivePath } from "./isActivePath"
+import { isActivePath } from "@/utilities/isActivePath"
 
 type MegaMenuLinkProps = Omit<React.ComponentProps<typeof NavigationMenuLink>, "href"> & {
   href: string | null

@@ -27,15 +27,15 @@ export function MegaMenu({ menu }: MegaMenuProps): React.ReactNode {
         <NavigationMenuLink>Link</NavigationMenuLink>
       </NavigationMenuContent>
     </NavigationMenuItem> */}
-          {menu.map((item) => (
-            <NavigationMenuItem key={item.id}>
-              <MegaMenuLink
-                href={getLinkFieldUrl(item.link)}
-                className="py-1"
-                render={<CMSLink link={item.link} />}
-              />
-            </NavigationMenuItem>
-          ))}
+          {menu.map((item) => {
+            const url = getLinkFieldUrl(item.link)
+            if (!url) return null
+            return (
+              <NavigationMenuItem key={item.id}>
+                <MegaMenuLink href={url} className="py-1" render={<CMSLink link={item.link} />} />
+              </NavigationMenuItem>
+            )
+          })}
         </NavigationMenuList>
       </NavigationMenu>
     </div>

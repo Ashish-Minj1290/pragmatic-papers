@@ -61,6 +61,8 @@ export const Menu: React.FC<MenuProps> = ({ menu, className, layout, slot, ...pr
     <nav>
       <ul className={cn(menuVariants({ className, layout }))} {...props}>
         {menu.map(({ link, id }, index) => {
+          const url = getLinkFieldUrl(link)
+          if (!url) return null
           const isStacked = layout === "stacked"
           return (
             <li
@@ -69,7 +71,7 @@ export const Menu: React.FC<MenuProps> = ({ menu, className, layout, slot, ...pr
             >
               <Slot>
                 <MenuLink
-                  href={getLinkFieldUrl(link)}
+                  href={url}
                   render={
                     <CMSLink
                       link={link}

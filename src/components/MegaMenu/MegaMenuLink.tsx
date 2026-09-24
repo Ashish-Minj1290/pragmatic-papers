@@ -1,12 +1,10 @@
 "use client"
 
 import { NavigationMenuLink } from "@/components/ui/navigation-menu"
-import { usePathname } from "next/navigation"
 import { isActivePath } from "@/utilities/isActivePath"
+import { usePathname } from "next/navigation"
 
-type MegaMenuLinkProps = Omit<React.ComponentProps<typeof NavigationMenuLink>, "href"> & {
-  href: string | null
-}
+type MegaMenuLinkProps = React.ComponentProps<typeof NavigationMenuLink> & { href: string }
 
 export function MegaMenuLink({ href, ...props }: MegaMenuLinkProps): React.ReactNode {
   const pathname = usePathname()

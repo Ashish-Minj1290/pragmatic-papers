@@ -5,9 +5,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 import { usePathname } from "next/navigation"
 
-type MenuLinkProps = Omit<useRender.ComponentProps<"a">, "href"> & {
-  href: string | null
-}
+type MenuLinkProps = useRender.ComponentProps<"a"> & { href: string }
 
 export function MenuLink({ href, render, ...props }: MenuLinkProps): React.ReactNode {
   const active = isActivePath(usePathname(), href)

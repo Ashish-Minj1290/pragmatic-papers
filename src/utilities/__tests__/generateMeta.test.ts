@@ -76,6 +76,15 @@ describe("generateMeta", () => {
     expect(meta.twitter).toMatchObject({ images: undefined })
   })
 
+  it.each([
+    ["no meta description", article({ title: "Untitled" })],
+    ["an empty meta description", article({ title: "Untitled", description: "" })],
+  ])("keeps the site's default Open Graph description for a doc with %s", async (_, doc) => {
+    const meta = await generateMeta({ doc, canonicalPath: "/about" })
+
+    expect(meta.openGraph?.description).toEqual(expect.stringContaining("community-driven"))
+  })
+
   it("uses the site image when the media has no og size", async () => {
     const meta = await generateMeta({ doc: article({ image: media() }), canonicalPath: "/about" })
 
